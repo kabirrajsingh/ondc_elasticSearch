@@ -1,4 +1,3 @@
-// src/components/QueryPincode.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,7 +8,7 @@ const QueryPincode = () => {
 
   const handleQuery = async () => {
     try {
-      const response = await axios.get(`/api/query?pincode=${pincode}`);
+      const response = await axios.get(`https://asia-south1-local-cogency-413608.cloudfunctions.net/readquerysparsematrixnew?pincode=${pincode}`);
       setResult(response.data);
       toast.success('Query successful!');
     } catch (error) {
@@ -33,7 +32,16 @@ const QueryPincode = () => {
       >
         Query
       </button>
-      {result && <div className="mt-4 bg-gray-100 p-2 rounded">{JSON.stringify(result)}</div>}
+      {result && (
+        <div className="mt-4 bg-gray-100 p-4 rounded">
+          <h3 className="text-lg font-semibold mb-2">Companies:</h3>
+          <ul>
+            {result.message.map((company, index) => (
+              <li key={index} className="mb-1">{company}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
