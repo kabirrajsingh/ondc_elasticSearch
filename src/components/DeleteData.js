@@ -9,7 +9,7 @@ const DeleteData = () => {
 
   const handleDeletion = async () => {
     try {
-      const response = await axios.delete(`https://asia-south1-local-cogency-413608.cloudfunctions.net/updatesparsematrix`);
+      const response = await axios.get( `https://asia-south1-local-cogency-413608.cloudfunctions.net/updatesparsematrix?company=${company}&pincode=${pincode}&operation=delete`);
       setResult(response.data);
       toast.success('Data deleted successfully!');
     } catch (error) {

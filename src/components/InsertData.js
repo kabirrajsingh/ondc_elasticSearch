@@ -9,10 +9,7 @@ const InsertData = () => {
 
   const handleInsertion = async () => {
     try {
-      const response = await axios.post('https://asia-south1-local-cogency-413608.cloudfunctions.net/updatesparsematrix', {
-        company: company,
-        pincode: pincode
-      });
+      const response = await axios.get( `https://asia-south1-local-cogency-413608.cloudfunctions.net/updatesparsematrix?company=${company}&pincode=${pincode}&operation=insert`);
       setResult(response.data);
       toast.success('Data inserted successfully!');
     } catch (error) {
